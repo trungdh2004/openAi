@@ -32,17 +32,7 @@ export async function POST(req: Request) {
       messages,
     });
 
-    // Convert the response into a friendly text-stream
-
-    // const reachToLimit = await checkUserLimit();
-    // const isPro = await checkSubcription();
-
-    // if (!reachToLimit && !isPro) {
-    //   return NextResponse.json(
-    //     { messages: "you are reach to limit", status: 403 },
-    //     { status: 401 }
-    //   );
-    // }
+    
 
     const stream = OpenAIStream(response);
     // Respond with the stream
