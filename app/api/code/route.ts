@@ -1,4 +1,3 @@
-import { auth } from "@clerk/nextjs";
 import { OpenAIStream, StreamingTextResponse } from "ai";
 import { NextResponse } from "next/server";
 import OpenAI from "openai";
@@ -11,12 +10,9 @@ const openai = new OpenAI(configuration);
 
 export async function POST(req: Request) {
   try {
-    const { userId } = auth();
     const { messages } = await req.json();
 
-    if (!userId) {
-      return new NextResponse("Unauthenticated", { status: 401 });
-    }
+    
 
     if (!configuration.apiKey) {
       return new NextResponse("miss OpenAI key", { status: 500 });

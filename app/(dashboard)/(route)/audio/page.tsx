@@ -11,7 +11,6 @@ import UserMesages from "@/components/dashboard/UserMesages";
 import AiResponse from "@/components/dashboard/AiResponse";
 import Loading from "@/components/Loading";
 import { cn } from "@/lib/utils";
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import {
   Form,

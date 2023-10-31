@@ -1,4 +1,3 @@
-import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 import Replicate from "replicate";
 
@@ -8,12 +7,7 @@ const configuration = {
 const replicate = new Replicate(configuration);
 export async function POST(req: Request) {
   try {
-    const { userId } = auth();
     const { prompt } = await req.json();
-
-    console.log(prompt);
-
-    if (!userId) return new NextResponse("Unauthorized", { status: 401 });
 
     if (!prompt)
       return new NextResponse("UnPrompt request not push", { status: 401 });
@@ -27,6 +21,8 @@ export async function POST(req: Request) {
         },
       }
     );
+
+    console.log(output);
 
     return NextResponse.json(output, { status: 200 });
   } catch (error) {

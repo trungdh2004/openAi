@@ -19,7 +19,6 @@ interface SidebarProps {
 
 const Sidebar = ({ className, isProPlan, userLimitCount }: SidebarProps) => {
   const { isMinimal } = useSidebarStore();
-  const { user } = useUser();
 
   return (
     <div className={cn("text-white ", className)}>
@@ -40,36 +39,6 @@ const Sidebar = ({ className, isProPlan, userLimitCount }: SidebarProps) => {
           isMinimal && "lg:left-3"
         )}
       >
-        <div className="mb-4 p-3 rounded-lg bg-gray-900 ">
-          <div className="mb-4 flex items-center">
-            <UserButton afterSignOutUrl="/" />
-
-            {!isMinimal && (
-              <span className="text-sm ml-4">
-                {user?.emailAddresses?.[0]?.emailAddress}
-              </span>
-            )}
-          </div>
-
-          {!isMinimal && (
-            <div className="border-t border-t-gray-950 pt-2">
-              {!isProPlan && (
-                <div className="mb-4">
-                  <div className="text-center mb-2 text-muted-foreground">
-                    {`${userLimitCount} / ${MAX_FREE_COUNT}`} Free generations
-                  </div>
-                  <Progress
-                    value={(userLimitCount / MAX_FREE_COUNT) * 100}
-                    className=" bg-gray-950 h-3"
-                    indicatorClassName="gradient-btn"
-                  />
-                </div>
-              )}
-
-              <SubcriptionButton isPro={isProPlan} />
-            </div>
-          )}
-        </div>
         <ThemeToggle />
       </div>
     </div>
